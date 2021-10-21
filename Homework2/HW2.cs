@@ -137,7 +137,7 @@ namespace Homework2
             }
             return result;
         }
-       /* public void SolveTask4()
+        public void SolveTask4()
         {
             Console.WriteLine("Задача 4");
             Console.WriteLine("Выведите в консоль решение(значения X) квадратного уравнения");
@@ -145,50 +145,44 @@ namespace Homework2
             double b =_core.ConvertNumberFromUserInput("Введите число b:");
             double c =_core.ConvertNumberFromUserInput("Введите число c:");
             double[] array = FindResultsOfQuadratic(a, b, c);
-            Console.WriteLine($"{BlaBla(array)}");
+            Console.WriteLine($"{PrintHandsomeResult(array)}");
         }
 
         public double[] FindResultsOfQuadratic(double numberA, double numberB, double numberC)
         {        
             double[] array = new double[0];
             double discriminant = ((int)Math.Pow(numberA, 2)) - (4 * numberB * numberC);
-            if (discriminant < 0)
-            {
-                array = new double[] { };
-                //Console.WriteLine("Нет значений");
-            }
+            
             if (discriminant == 0)
             {
                 double result = -(numberB * numberB) / (2 * numberA);               
                 array =new double[] { result };
-                //Console.WriteLine($"x={result}");
             }
             if (discriminant > 0)
             {
                 double result1 = (Math.Sqrt(discriminant) - numberB) / (2 * numberA) * 1.0;
                 double result2 = (-numberB - Math.Sqrt(discriminant)) / (2 * numberA) * 1.0;
-                array = new double[] { result1, result2 };
-                //Console.WriteLine($"[x1={result1}, x2={result2}");
+                array = new double[] { result1, result2 };               
             }
             return array;
         }
-        public string GiveHandsomeResult(double[] array)
+        public string PrintHandsomeResult(double[] array)
         {
             string result = "";
-            if (array { })
+            if (array.Length==0)
             {
                 result = "Нет значений";
             }
-            if (array == new double[1])
+            if (array.Length == 1)
             {
                 result = $"x = {array[0]}";
             }
-            if (array == new double[2])
+            if (array.Length == 2)
             {
                 result = $"x1 = {array[0]}, x2={array[1]}";
             }
             return result;
-        }*/
+        }
        
 
         public void SolveTask5()
