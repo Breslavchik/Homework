@@ -45,11 +45,12 @@ namespace Homework3
             Console.WriteLine("Задача 2");
             Console.WriteLine("Вывести все числа от 1 до 1000, которые делятся на A");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            FindMultipleNumber(a);
+            Console.WriteLine($"{FindNumbersThatAreDivisibleByANumber(a)}");
         }
-        public void FindMultipleNumber(int numberA)
+        public string FindNumbersThatAreDivisibleByANumber(int numberA)
         {
             int numberB = 0;
+            string result = "";
             while (numberB > 0) ;
             {
                 for (int index = 1; index <= 1000; index++)
@@ -57,19 +58,21 @@ namespace Homework3
                     numberB = index % numberA;
                     if (numberB == 0)
                     {
-                        Console.WriteLine(index);
-                    }
-                }
+                        result=$"{result} {index}";
+                        
+                    }                    
+                }                
             }
+            return result;
         }
         public void SolveTask3()
         {
             Console.WriteLine("Задача 3");
             Console.WriteLine("Найте количество положительных целых чисел, квадрат которых меньше A");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            Console.WriteLine($"{FindSquareLessNumber(a)}");
+            Console.WriteLine($"{CountNumbersWithSquareLessThanUserNumber(a)}");
         }
-        public int FindSquareLessNumber(int numberA)
+        public int CountNumbersWithSquareLessThanUserNumber(int numberA)
         {
             int result = 0;
             for (int index = 1; index >= 1; index++)
@@ -110,15 +113,15 @@ namespace Homework3
             Console.WriteLine("Задача 5");
             Console.WriteLine("Вывести сумму всех чисел из диапазона от A до B, которые делятся без остатка на 7");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            int b = _core.ConvertNumberFromUserInput("Введите число b:");
-            if (a > b)
-            {
-                _core.SwapVariables(ref a, ref b);
-            }
-            Console.WriteLine($"{FindSumNumbersWhichDividedWithoutRemainder(a, b)}");
+            int b = _core.ConvertNumberFromUserInput("Введите число b:");            
+            Console.WriteLine($"{CalcSumOfNumbersDivisibleBySeven(a, b)}");
         }
-        public int FindSumNumbersWhichDividedWithoutRemainder(int numberA, int numberB)
+        public int CalcSumOfNumbersDivisibleBySeven(int numberA, int numberB)
         {
+            if (numberA > numberB)
+            {
+                _core.SwapVariables(ref numberA, ref numberB);
+            }
             int sum = 0;
             for (int i = numberA; i <= numberB; i++)
             {
@@ -154,15 +157,15 @@ namespace Homework3
             Console.WriteLine("Задача 7");
             Console.WriteLine("Найти наибольший общий делитель двух чисел, используя алгоритм Евклида");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            int b = _core.ConvertNumberFromUserInput("Введите число b:");
-            if (a < b)
-            {
-                _core.SwapVariables(ref a, ref b);
-            }
+            int b = _core.ConvertNumberFromUserInput("Введите число b:");           
             Console.WriteLine($"{FindLargestDivisorEuclideanAlgorithm(a, b)}");
         }
         public int FindLargestDivisorEuclideanAlgorithm(int numberA, int numberB)
         {
+            if (numberA < numberB)
+            {
+                _core.SwapVariables(ref numberA, ref numberB);
+            }
             int tmp = 0;
             do
             {
@@ -200,9 +203,9 @@ namespace Homework3
             Console.WriteLine("Задача 9");
             Console.WriteLine("Найти количество нечетных цифр числа");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            Console.WriteLine($"{FindCostOddNumbers(a)}");
+            Console.WriteLine($"{CountFindSummOfEvenNumbersInvalue(a)}");
         }
-        public int FindCostOddNumbers(int numberA)
+        public int CountFindSummOfEvenNumbersInvalue(int numberA)
         {
             int possibleResult = 0;
             int range = numberA;
@@ -240,13 +243,14 @@ namespace Homework3
         {
             Console.WriteLine("Задача 11");
             Console.WriteLine("Вывести числа в диапазоне от 1 до N, сумма четных цифр которых больше суммы нечетных");
-            int a = _core.ConvertNumberFromUserInput("Введите число положительное число:");
-            FindSummOfEvenNumbersInvalue(a);
+            int a = _core.ConvertNumberFromUserInput("Введите положительное число:");
+            Console.WriteLine($"{FindSummOfEvenNumbersInvalue(a)}");
         }
-        public void FindSummOfEvenNumbersInvalue(int numberA)
+        public string FindSummOfEvenNumbersInvalue(int numberA)
         {
             int sumchet = 0;
             int sumnechet = 0;
+            string result = "";
             int tempA = 0;
             int tempB = 0;
             for (int i = 1; i <= numberA; i++)
@@ -267,7 +271,7 @@ namespace Homework3
                 }
                 if (sumchet > sumnechet)
                 {
-                    Console.WriteLine(i);
+                    result=$"{result} {i}";
                     sumchet = 0;
                     sumnechet = 0;
                 }
@@ -277,6 +281,7 @@ namespace Homework3
                     sumnechet = 0;
                 }
             }
+            return result;
         }
         public void SolveTask12()
         {
@@ -284,23 +289,36 @@ namespace Homework3
             Console.WriteLine("Сообщить, есть ли в написании двух чисел одинаковые цифры");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
             int b = _core.ConvertNumberFromUserInput("Введите число b:");
-            FindSameNumbers(a, b);
+            Console.WriteLine($"{FindSameNumbers(a, b)}"  );
         }
-        public void FindSameNumbers(int numberA, int numberB)
+        public string FindSameNumbers(int numberA, int numberB)
         {
+            int tmp = 0;
+            string temp = "";
+            int b = numberB;
+            
             while (numberA > 0)
             {
                 while (numberB > 0)
                 {
                     if (numberA % 10 == numberB % 10)
                     {
-                        Console.WriteLine("Да");
+                     tmp=tmp+1;
                     }
                     numberB = numberB / 10;
                 }
                 numberA = numberA / 10;
+                numberB = b;
             }
-            Console.WriteLine("Нет");
+            if (tmp > 0)
+            {
+                temp = "Да";
+            }
+            else
+            {
+                temp = "Нет";
+            }
+            return temp;
         }
     }
 }

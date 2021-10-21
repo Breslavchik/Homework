@@ -16,7 +16,7 @@ namespace Homework4
             Console.WriteLine("Найти минимальный элемент массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
+            PrintArray(array);
             Console.WriteLine($"\nМинимальный элемент массива:{FindMinElementOfArray(length, array)}");
         }
         public void SolveTask2()
@@ -25,7 +25,7 @@ namespace Homework4
             Console.WriteLine("Найти максимальный элемент массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
+            PrintArray(array);
             Console.WriteLine($"\nМаксимальный элемент массива:{FindMaxElementOfArray(length, array)}");
         }
         public void SolveTask3()
@@ -34,7 +34,7 @@ namespace Homework4
             Console.WriteLine("Найти индекс минимального элемента массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
+            PrintArray(array);
             Console.WriteLine($"\nИндекс минимального элемента массива:{FindIndexOfMinElementOfArray(length, array)}");
         }
         public void SolveTask4()
@@ -43,7 +43,7 @@ namespace Homework4
             Console.WriteLine("Найти индекс максимального элемента массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
+            PrintArray(array);
             Console.WriteLine($"\nИндекс максимального элемента массива:{FindIndexOfMaxElementOfArray(length, array)}");
         }
         public void SolveTask5()
@@ -52,7 +52,7 @@ namespace Homework4
             Console.WriteLine("Посчитать сумму элементов массива с нечетными индексами");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
+            PrintArray(array);
             Console.WriteLine($"\nСумма элементов с нечетными индексами: {SumElementsOfOddIndex(length, array)}");
         }
         public void SolveTask6()
@@ -61,10 +61,10 @@ namespace Homework4
             Console.WriteLine("Сделать реверс массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
-            array = ReversArray(length, array);
+            PrintArray(array);
+            ReverseArray(array);
             Console.WriteLine();
-            OutputArray(array, length);
+            PrintArray(array);
         }
         public void SolveTask7()
         {
@@ -72,8 +72,8 @@ namespace Homework4
             Console.WriteLine("Посчитать количество нечетных элементов массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
-            Console.WriteLine($"\nКоличество нечетныхэлементов массива:{SumOfOddNumbersOfArray(length, array)}");
+            PrintArray(array);
+            Console.WriteLine($"\nКоличество нечетных элементов массива:{SumOfOddNumbersOfArray(array)}");
         }
         public void SolveTask8()
         {
@@ -81,21 +81,21 @@ namespace Homework4
             Console.WriteLine("Поменять местами первую и вторую половину массива");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
-            array = ChangeHfsOfArray(length, array);
+            PrintArray(array);
+            SwapHalvesOfAnArray(array);
             Console.WriteLine();
-            OutputArray(array, length);
+            PrintArray(array);
         }
-        public void SolveTask9()
+            public void SolveTask9()
         {
             Console.WriteLine("Задача 9");
             Console.WriteLine("Отсортировать массив по возрастанию");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
-            array = SortingBubble(length, array);
+            PrintArray(array);
+            DoBubbleSort(array);
             Console.WriteLine();
-            OutputArray(array, length);
+            PrintArray(array);
         }
         public void SolveTask10()
         {
@@ -103,10 +103,10 @@ namespace Homework4
             Console.WriteLine("Отсортировать массив по убыванию");
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
-            OutputArray(array, length);
-            array = SortingSelect(length, array);
+            PrintArray(array);
+            DoSelectSort(array);
             Console.WriteLine();
-            OutputArray(array, length);
+            PrintArray(array);
         }        
         public int[] FillArrayRandom(int length)
         {
@@ -130,9 +130,9 @@ namespace Homework4
             }
             return min;
         }
-        public void OutputArray(int[] array, int length)
+        public void PrintArray(int[] array)
         {
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 Console.Write($"{array[index]}\t");
             }
@@ -186,32 +186,30 @@ namespace Homework4
             }
             return sum;
         }
-        public int[] ReversArray(int length, int[] array)
+        public void ReverseArray(int[] array)
         {
-            int half = length / 2;
+            int half = array.Length / 2;
             for (int index = 0; index < half; index++)
             {
                 int t = array[index];
-                array[index] = array[length - 1 - index];
-                array[length - 1 - index] = t;
-            }
-            return array;
+                array[index] = array[array.Length - 1 - index];
+                array[array.Length - 1 - index] = t;
+            }            
         }
-        public int[] ChangeHfsOfArray(int length, int[] array)
+        public void SwapHalvesOfAnArray(int[] array)
         {
-            int tmp = length / 2;
+            int tmp = array.Length / 2;
             for (int i = 0; i < tmp; i++)
             {
                 int a = array[i];
-                array[i] = array[i + length - tmp];
-                array[i + length - tmp] = a;
+                array[i] = array[i + array.Length - tmp];
+                array[i + array.Length - tmp] = a;
             }
-            return array;
         }
-        public int SumOfOddNumbersOfArray(int length, int[] array)
+        public int SumOfOddNumbersOfArray(int[] array)
         {
             int sum = 0;
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] % 2 != 0)
                 {
@@ -220,11 +218,11 @@ namespace Homework4
             }
             return sum;
         }
-        public int[] SortingBubble(int length, int[] array)
+        public void DoBubbleSort(int[] array)
         {
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = i + 1; j < length; j++)
+                for (int j = i + 1; j < array.Length; j++)
                 {
                     if (array[i] > array[j])
                     {
@@ -234,14 +232,13 @@ namespace Homework4
                     }
                 }
             }
-            return array;
         }
-        public int[] SortingSelect(int length, int[] array)
+        public void DoSelectSort(int[] array)
         {
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 int temp = i;
-                for (int j = i + 1; j < length; j++)
+                for (int j = i + 1; j < array.Length; j++)
                 {
                     if (array[j] > array[temp])
                     {
@@ -251,8 +248,7 @@ namespace Homework4
                 int temp2 = array[temp];
                 array[temp] = array[i];
                 array[i] = temp2;
-            }
-            return array;
+            } 
         }
     }
 }

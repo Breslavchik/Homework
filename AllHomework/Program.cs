@@ -22,10 +22,10 @@ namespace AllHomework
             //hw2.SolveTask2();
             //hw2.SolveTask3();
             //hw2.SolveTask4();
-            hw2.SolveTask5();
-            //HW3 hw3 = new HW3();
+            //hw2.SolveTask5();
+            HW3 hw3 = new HW3();
             //hw3.SolveTask1();
-            //hw3.SolveTask2();
+            // hw3.SolveTask2();
             //hw3.SolveTask3();
             //hw3.SolveTask4();
             //hw3.SolveTask5();
@@ -47,12 +47,12 @@ namespace AllHomework
             //hw4.SolveTask8();
             //hw4.SolveTask9();
             //hw4.SolveTask10();
-            //HW5 hw5 = new HW5();
+            HW5 hw5 = new HW5();
             //hw5.SolveTask1();
             //hw5.SolveTask2();
             //hw5.SolveTask3();
             //hw5.SolveTask4();
-            //hw5.SolveTask5();
+            hw5.SolveTask5();
             //hw5.SolveTask6();
 
         }

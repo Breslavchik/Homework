@@ -16,7 +16,7 @@ namespace Homework5
             int a = _core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b = _core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine($"\nМинимальный элемент массива: {FindMinElementOfArray(array)}");
         }
         public void SolveTask2()
@@ -26,7 +26,7 @@ namespace Homework5
             int a =_core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b =_core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine($"\nМаксимальный элемент массива: {FindMaxElementOfArray(array)}");
         }
         public void SolveTask3()
@@ -36,11 +36,11 @@ namespace Homework5
             int a =_core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b =_core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine();
             int[] array2 = FindIndexOfMinElementOfArray(array);
             Console.WriteLine("Индекс минимального элемента массива");
-            OutputArray(array2, 2);
+            PrintArray(array2);
         }
         public void SolveTask4()
         {
@@ -49,11 +49,11 @@ namespace Homework5
             int a = _core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b = _core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine();
             int[] array2 = FindIndexOfMaxElementOfArray(array);
             Console.WriteLine("Индекс максимального элемента массива");
-            OutputArray(array2, 2);
+            PrintArray(array2);
         }
         public void SolveTask5()
         {
@@ -62,9 +62,9 @@ namespace Homework5
             int a = _core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b = _core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine();
-            Console.WriteLine($"Кол-во элементов, которые больше своих соседей:{FindCostMaxElementsAmongNeighboring(array)}");
+            Console.WriteLine($"Кол-во элементов, которые больше своих соседей:{CountFindSumOfNumbersThatAreLargerThanAdjacentNumbers(array)}");
         }
         public void SolveTask6()
         {
@@ -73,10 +73,10 @@ namespace Homework5
             int a = _core.ConvertNumberFromUserInput("Введите количество строк и столбцов массива");
             int b = a;
             int[,] array = FillArrayOfRandom(a, b);
-            OutputArray(array);
+            PrintArray(array);
             Console.WriteLine();
-            int[,] arraymirrow = DiagonalMirrowArray(array, a);
-            OutputArray(arraymirrow);
+            DiagonalMirrowArray(array);
+            PrintArray(array);
         }        
         public int[,] FillArrayOfRandom(int numberA, int numberB)
         {
@@ -91,7 +91,7 @@ namespace Homework5
             }
             return array;
         }
-        public void OutputArray(int[,] array)
+        public void PrintArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -152,9 +152,9 @@ namespace Homework5
             int[] array2 = new int [] {temp, temp2};
             return array2;
         }
-        public void OutputArray(int[] array, int length)
+        public void PrintArray(int[] array)
         {
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 Console.Write($"{array[index]}\t");
             }
@@ -179,9 +179,11 @@ namespace Homework5
             int[] array2 = new int[] { temp, temp2 };
             return array2;
         }
-        public int FindCostMaxElementsAmongNeighboring(int[,] array)
-        {
+        public string CountFindSumOfNumbersThatAreLargerThanAdjacentNumbers(int[,] array)
+        {                     
             int tmp = 0;
+            string result = "";
+            string resulttemp = "";
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -191,25 +193,23 @@ namespace Homework5
                           && (i >= array.GetLength(0) - 1 || array[i, j] > array[i + 1, j]))
                     {
                         tmp++;
-                        //Console.WriteLine($"Элемент {array[i, j]} с индексом {i},{j}");
+                        resulttemp = $"{resulttemp}\n это элемент {array[i, j]} с индексом {i},{j}";                      
                     }
                 }
             }
-            return tmp;
+            return result=$"\nКоличество таких элементов:{tmp}\n {resulttemp}";
         }
-        public int[,] DiagonalMirrowArray(int[,] array, int parametr)
-        {
-            int[,] arraymirrow = new int[parametr, parametr];
+        public void DiagonalMirrowArray(int[,] array)
+        {            
             for (int j = 0; j < array.GetLength(0); j++)
             {
-                for (int i = 0; i < array.GetLength(1); i++)
+                for (int i = 0; i < j; i++)
                 {
                     int t = array[i, j];
-                    arraymirrow[j, i] = array[i, j];
-                    array[i, j] = t;                   
+                    array[i, j] = array[j, i];
+                    array[j, i] = t;
                 }               
             }
-            return arraymirrow;
         }
         }
 }
