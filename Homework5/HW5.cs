@@ -64,7 +64,7 @@ namespace Homework5
             int[,] array = FillArrayOfRandom(a, b);
             PrintArray(array);
             Console.WriteLine();
-            Console.WriteLine($"Кол-во элементов, которые больше своих соседей:{CountFindSumOfNumbersThatAreLargerThanAdjacentNumbers(array)}");
+            Console.WriteLine($"Кол-во элементов, которые больше своих соседей:{CountElementsThatAreBiggerThanNeighbors(array)}");
         }
         public void SolveTask6()
         {
@@ -179,11 +179,9 @@ namespace Homework5
             int[] array2 = new int[] { temp, temp2 };
             return array2;
         }
-        public string CountFindSumOfNumbersThatAreLargerThanAdjacentNumbers(int[,] array)
+        public int CountElementsThatAreBiggerThanNeighbors(int[,] array)
         {                     
-            int tmp = 0;
-            string result = "";
-            string resulttemp = "";
+            int tmp = 0;            
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -192,12 +190,11 @@ namespace Homework5
                           && (j == 0 || array[i, j] > array[i, j - 1])
                           && (i >= array.GetLength(0) - 1 || array[i, j] > array[i + 1, j]))
                     {
-                        tmp++;
-                        resulttemp = $"{resulttemp}\n это элемент {array[i, j]} с индексом {i},{j}";                      
+                        tmp++;                                              
                     }
                 }
             }
-            return result=$"\nКоличество таких элементов:{tmp}\n {resulttemp}";
+            return tmp;
         }
         public void DiagonalMirrowArray(int[,] array)
         {            
@@ -205,9 +202,7 @@ namespace Homework5
             {
                 for (int i = 0; i < j; i++)
                 {
-                    int t = array[i, j];
-                    array[i, j] = array[j, i];
-                    array[j, i] = t;
+                    _core.SwapVariables(ref array[i, j], ref array[j, i]);                   
                 }               
             }
         }

@@ -17,7 +17,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            Console.WriteLine($"\nМинимальный элемент массива:{FindMinElementOfArray(length, array)}");
+            Console.WriteLine($"\nМинимальный элемент массива:{FindMinElementOfArray(array)}");
         }
         public void SolveTask2()
         {
@@ -26,7 +26,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            Console.WriteLine($"\nМаксимальный элемент массива:{FindMaxElementOfArray(length, array)}");
+            Console.WriteLine($"\nМаксимальный элемент массива:{FindMaxElementOfArray(array)}");
         }
         public void SolveTask3()
         {
@@ -35,7 +35,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            Console.WriteLine($"\nИндекс минимального элемента массива:{FindIndexOfMinElementOfArray(length, array)}");
+            Console.WriteLine($"\nИндекс минимального элемента массива:{FindIndexOfMinElementOfArray(array)}");
         }
         public void SolveTask4()
         {
@@ -44,7 +44,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            Console.WriteLine($"\nИндекс максимального элемента массива:{FindIndexOfMaxElementOfArray(length, array)}");
+            Console.WriteLine($"\nИндекс максимального элемента массива:{FindIndexOfMaxElementOfArray(array)}");
         }
         public void SolveTask5()
         {
@@ -53,7 +53,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            Console.WriteLine($"\nСумма элементов с нечетными индексами: {SumElementsOfOddIndex(length, array)}");
+            Console.WriteLine($"\nСумма элементов с нечетными индексами: {SumElementsOfOddIndex(array)}");
         }
         public void SolveTask6()
         {
@@ -118,10 +118,10 @@ namespace Homework4
             }
             return array;
         }
-        public int FindMinElementOfArray(int length, int[] array)
+        public int FindMinElementOfArray(int[] array)
         {
             int min = array[0];
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] < min)
                 {
@@ -137,10 +137,10 @@ namespace Homework4
                 Console.Write($"{array[index]}\t");
             }
         }
-        public int FindMaxElementOfArray(int length, int[] array)
+        public int FindMaxElementOfArray(int[] array)
         {
             int max = array[0];
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] > max)
                 {
@@ -149,11 +149,11 @@ namespace Homework4
             }
             return max;
         }
-        public int FindIndexOfMinElementOfArray(int length, int[] array)
+        public int FindIndexOfMinElementOfArray(int[] array)
         {
             int min = array[0];
             int temp = 0;
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] < min)
                 {
@@ -163,11 +163,11 @@ namespace Homework4
             }
             return temp;
         }
-        public int FindIndexOfMaxElementOfArray(int length, int[] array)
+        public int FindIndexOfMaxElementOfArray(int[] array)
         {
             int max = array[0];
             int temp = 0;
-            for (int index = 0; index < length; index++)
+            for (int index = 0; index < array.Length; index++)
             {
                 if (array[index] > max)
                 {
@@ -177,10 +177,10 @@ namespace Homework4
             }
             return temp;
         }
-        public int SumElementsOfOddIndex(int length, int[] array)
+        public int SumElementsOfOddIndex(int[] array)
         {
             int sum = 0;
-            for (int index = 1; index < length; index += 2)
+            for (int index = 1; index < array.Length; index += 2)
             {
                 sum += array[index];
             }
@@ -191,9 +191,7 @@ namespace Homework4
             int half = array.Length / 2;
             for (int index = 0; index < half; index++)
             {
-                int t = array[index];
-                array[index] = array[array.Length - 1 - index];
-                array[array.Length - 1 - index] = t;
+                _core.SwapVariables(ref array[index], ref array[array.Length - 1 - index]);                
             }            
         }
         public void SwapHalvesOfAnArray(int[] array)
@@ -201,9 +199,7 @@ namespace Homework4
             int tmp = array.Length / 2;
             for (int i = 0; i < tmp; i++)
             {
-                int a = array[i];
-                array[i] = array[i + array.Length - tmp];
-                array[i + array.Length - tmp] = a;
+                _core.SwapVariables(ref array[i], ref array[i + array.Length - tmp]);               
             }
         }
         public int SumOfOddNumbersOfArray(int[] array)
@@ -226,9 +222,7 @@ namespace Homework4
                 {
                     if (array[i] > array[j])
                     {
-                        int temp = array[j];
-                        array[j] = array[i];
-                        array[i] = temp;
+                        _core.SwapVariables(ref array[j], ref array[i]);                       
                     }
                 }
             }
@@ -245,9 +239,7 @@ namespace Homework4
                         temp = j;
                     }
                 }
-                int temp2 = array[temp];
-                array[temp] = array[i];
-                array[i] = temp2;
+                _core.SwapVariables(ref array[temp], ref array[i]);                
             } 
         }
     }
