@@ -62,7 +62,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            ReverseArray(array);
+            array=ReverseArray(array);
             Console.WriteLine();
             PrintArray(array);
         }
@@ -82,7 +82,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            SwapHalvesOfAnArray(array);
+            array=SwapHalvesOfAnArray(array);
             Console.WriteLine();
             PrintArray(array);
         }
@@ -93,7 +93,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            DoBubbleSort(array);
+            array=DoBubbleSort(array);
             Console.WriteLine();
             PrintArray(array);
         }
@@ -104,7 +104,7 @@ namespace Homework4
             int length = _core.ConvertNumberFromUserInput("Введите длину массива");
             int[] array = FillArrayRandom(length);
             PrintArray(array);
-            DoSelectSort(array);
+            array=DoSelectSort(array);
             Console.WriteLine();
             PrintArray(array);
         }        
@@ -186,21 +186,23 @@ namespace Homework4
             }
             return sum;
         }
-        public void ReverseArray(int[] array)
+        public int[] ReverseArray(int[] array)
         {
             int half = array.Length / 2;
             for (int index = 0; index < half; index++)
             {
                 _core.SwapVariables(ref array[index], ref array[array.Length - 1 - index]);                
-            }            
+            }
+            return array;
         }
-        public void SwapHalvesOfAnArray(int[] array)
+        public int[] SwapHalvesOfAnArray(int[] array)
         {
             int tmp = array.Length / 2;
             for (int i = 0; i < tmp; i++)
             {
                 _core.SwapVariables(ref array[i], ref array[i + array.Length - tmp]);               
             }
+            return array;
         }
         public int SumOfOddNumbersOfArray(int[] array)
         {
@@ -214,7 +216,7 @@ namespace Homework4
             }
             return sum;
         }
-        public void DoBubbleSort(int[] array)
+        public int[] DoBubbleSort(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -226,8 +228,9 @@ namespace Homework4
                     }
                 }
             }
+            return array;
         }
-        public void DoSelectSort(int[] array)
+        public int[] DoSelectSort(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -240,7 +243,8 @@ namespace Homework4
                     }
                 }
                 _core.SwapVariables(ref array[temp], ref array[i]);                
-            } 
+            }
+            return array;
         }
     }
 }

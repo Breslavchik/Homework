@@ -36,7 +36,7 @@ namespace Homework5
             int a =_core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b =_core.ConvertNumberFromUserInput("Введите количество столбцов массива");
             int[,] array = FillArrayOfRandom(a, b);
-            PrintArray(array);
+            PrintArray(array);                        
             Console.WriteLine();
             int[] array2 = FindIndexOfMinElementOfArray(array);
             Console.WriteLine("Индекс минимального элемента массива");
@@ -61,7 +61,7 @@ namespace Homework5
             Console.WriteLine("Найти количество элементов массива, которые больше всех своих соседей одновременно");
             int a = _core.ConvertNumberFromUserInput("Введите количество строк массива");
             int b = _core.ConvertNumberFromUserInput("Введите количество столбцов массива");
-            int[,] array = FillArrayOfRandom(a, b);
+            int[,] array = FillArrayOfRandom(a, b);            
             PrintArray(array);
             Console.WriteLine();
             Console.WriteLine($"Кол-во элементов, которые больше своих соседей:{CountElementsThatAreBiggerThanNeighbors(array)}");
@@ -75,7 +75,7 @@ namespace Homework5
             int[,] array = FillArrayOfRandom(a, b);
             PrintArray(array);
             Console.WriteLine();
-            DiagonalMirrowArray(array);
+            array=DiagonalMirrowArray(array);
             PrintArray(array);
         }        
         public int[,] FillArrayOfRandom(int numberA, int numberB)
@@ -196,7 +196,7 @@ namespace Homework5
             }
             return tmp;
         }
-        public void DiagonalMirrowArray(int[,] array)
+        public int[,] DiagonalMirrowArray(int[,] array)
         {            
             for (int j = 0; j < array.GetLength(0); j++)
             {
@@ -205,6 +205,7 @@ namespace Homework5
                     _core.SwapVariables(ref array[i, j], ref array[j, i]);                   
                 }               
             }
+            return array;
         }
         }
 }

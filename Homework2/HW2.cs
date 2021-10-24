@@ -53,19 +53,19 @@ namespace Homework2
         public int FindCoordinateQuarter(int numberA, int numberB)
         {
             int result = 0;
-            if (numberA >= 0 && numberB >= 0)
+            if (numberA > 0 && numberB > 0)
             {
                 result = 1;
             }
             else
             {
-                if (numberA >= 0 && numberB <= 0)
+                if (numberA > 0 && numberB < 0)
                 {
                     result = 4;                    
                 }
                 else
                 {
-                    if (numberA <= 0 && numberB <= 0)
+                    if (numberA < 0 && numberB < 0)
                     {
                         result = 3; 
                     }
@@ -124,7 +124,7 @@ namespace Homework2
             {
                 if (numberA < numberB && numberB < numberC)
                 {
-                    result = $"{numberA}{numberB}{numberC}";
+                    result = $"{numberA} {numberB} {numberC}";
                 }
                 else
                 {
@@ -133,6 +133,10 @@ namespace Homework2
                         if (numberA > numberC) { result = $"{numberB} {numberC} {numberA}"; }
                         else { result = $"{numberB} {numberA} {numberC}"; }
                     }
+                }
+                if (numberA < numberB && numberB > numberC)
+                {
+                    result = $"{numberA} {numberC} {numberB}";
                 }
             }
             return result;
@@ -145,7 +149,7 @@ namespace Homework2
             double b =_core.ConvertNumberFromUserInput("Введите число b:");
             double c =_core.ConvertNumberFromUserInput("Введите число c:");
             double[] array = FindResultsOfQuadratic(a, b, c);
-            Console.WriteLine($"{PrintHandsomeResult(array)}");
+            Console.WriteLine($"{PrintResultsOfQuadratic(array)}");
         }
 
         public double[] FindResultsOfQuadratic(double numberA, double numberB, double numberC)
@@ -166,7 +170,7 @@ namespace Homework2
             }
             return array;
         }
-        public string PrintHandsomeResult(double[] array)
+        public string PrintResultsOfQuadratic(double[] array)
         {
             string result = "";
             if (array.Length==0)

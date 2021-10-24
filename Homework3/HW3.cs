@@ -15,18 +15,17 @@ namespace Homework3
             Console.WriteLine("Задача 1");
             Console.WriteLine("Возвести число A в степень B");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            int b = _core.ConvertNumberFromUserInput("Введите число b:");
-            double temp = a * 1.0;
-            Console.WriteLine($"{RaiseNumberToPower(b, temp, a)}");
+            int b = _core.ConvertNumberFromUserInput("Введите число b:");            
+            Console.WriteLine($"{RaiseNumberToPower(b, a)}");
         }
-        public double RaiseNumberToPower(int numberB, double temp, int numberA)
+        public double RaiseNumberToPower(int numberA, int numberB)
         {
+            double temp = numberA * 1.0;
             if (numberB > 0)
             {
                 for (int index = 1; index < numberB; index++)
                 {
                     temp = temp * numberA;
-
                 }
                 return temp;
             }
@@ -37,6 +36,7 @@ namespace Homework3
                     temp = temp / numberA;
 
                 }
+                temp= Math.Round(temp, 2);
                 return temp;
             }
         }
@@ -97,7 +97,7 @@ namespace Homework3
         {
             int numeric = numberA - 1;
             int result = 0;
-            for (int index = numeric; index > 1; index--)
+            for (int index = numeric; index >= 1; index--)
             {
                 int possiblenumber = numberA % index;
                 if (possiblenumber == 0)
@@ -182,7 +182,12 @@ namespace Homework3
             Console.WriteLine("Пользователь вводит целое положительное число, которое является кубом целого числа N. " +
                 "Найдите число N методом половинного деления");
             int a = _core.ConvertNumberFromUserInput("Введите число а:");
-            Console.WriteLine($"{a} является кубом числа {FindCubByHalfDivision(a)}");
+           int  b = FindCubByHalfDivision(a);
+            if (b == 0)
+            {
+                Console.WriteLine("Попытайте счастья с другим числом");
+            }
+            else { Console.WriteLine($"{a} является кубом числа {b}"); }
         }
         public int FindCubByHalfDivision(int numberA)
         {
@@ -194,6 +199,11 @@ namespace Homework3
                 mid = range / 2;
                 possibleResult = mid * mid * mid;
                 range = mid;
+                if (mid == 1)
+                {
+                    mid = 0;
+                    break;
+                }
             }
             while (possibleResult != numberA);
             return mid;
@@ -296,6 +306,21 @@ namespace Homework3
             int tmp = 0;
             string temp = "";
             int b = numberB;
+           if (numberB == 0)
+            {
+                _core.SwapVariables(ref numberA, ref numberB);
+            }
+            if (numberA == 0)
+            {
+                while (numberB > 0)
+                {
+                    if (numberA == numberB % 10)
+                    {
+                     tmp=tmp+1;
+                    }
+                    numberB = numberB / 10;
+                }
+            }
             
             while (numberA > 0)
             {
